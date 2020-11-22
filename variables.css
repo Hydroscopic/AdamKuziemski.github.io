@@ -5,11 +5,11 @@
   --sides-only-small: 0 var(--spacing-small);
   --full-without-spacing: calc(100% - 2 * var(--spacing-small));
 
-  --background: #f8f8f8;
+  --background: #FFD8B1;
   --text-color: #222222;
   --line-color: #e9e9e9;
   --hint-color: #aaaaaa;
-  --element-background: white;
+  --element-background: #fffff2;
 
   --primary-color: #ed7e07;
   --secondary-color: #ba3b89;
