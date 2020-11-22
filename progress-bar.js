@@ -61,7 +61,7 @@ class AnimatedText {
 class ProgressBar {
   constructor() {
     /** @readonly @private {Date} */
-    this.birthday = new Date('12 Jan 1991 13:05');
+    this.birthday = new Date('07 Oct 199O 00:00');
     /** @private {HTMLDivElement} */
     this.bar = document.getElementById('progress-bar');
     /** @private {HTMLDivElement} */
@@ -106,7 +106,7 @@ class ProgressBar {
    * @param {number} age to set; defaults to calculateAge()
    */
   setLevel(age = this.calculateAge()) {
-    this.bar.title = `Level ${age} programmer`;
+    this.bar.title = `Level ${age} engineer`;
   }
 
   /**
