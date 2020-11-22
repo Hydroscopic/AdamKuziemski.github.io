@@ -61,7 +61,7 @@ class AnimatedText {
 class ProgressBar {
   constructor() {
     /** @readonly @private {Date} */
-    this.birthday = new Date('12 Jan 1991 13:05');
+    this.birthday = new Date('07 Oct 1990 07:00');
     /** @private {HTMLDivElement} */
     this.bar = document.getElementById('progress-bar');
     /** @private {HTMLDivElement} */
