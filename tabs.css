@@ -23,6 +23,21 @@
   color: var(--text-color);
 }
 
+.sub-tab {
+  padding: var(--spacing-small);
+  text-align: center;
+  background: var(--element-background);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid var(--line-color);
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: 1em;
+  color: var(--text-color);
+  width: 33%
+}
+
 .tab:focus {
   outline: 1px solid var(--line-color);
 }
