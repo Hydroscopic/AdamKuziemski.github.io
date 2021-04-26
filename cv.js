@@ -22,4 +22,10 @@
 		tabs.displayTabs();
 		darkMode.applyDarkModeSettings();
 	}
+	
+	}
+
+	window.onwheel = (event) => {
+		tabs.scroll(event);
+	}
 })();
