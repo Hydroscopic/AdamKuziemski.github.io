@@ -71,6 +71,12 @@
   }
 }
 
+@media (pointer: coarse) {
+  .tab-body {
+    margin-bottom: 64px;
+  }
+}
+
 @media print {
   #tab-bar {
     display: none;
@@ -84,6 +90,10 @@
 
   #skillz {
     margin-top: 20px;
+  }
+
+  .tab-body {
+    display: block;
   }
 
   .tab-body > .tab-title {

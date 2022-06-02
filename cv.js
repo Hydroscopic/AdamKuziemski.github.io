@@ -7,6 +7,8 @@
 		darkMode = new DarkModeDetector();
 		progressBar = new ProgressBar();
 		tabs = new TabComponent();
+
+		placeEggs();
 	};
 
 	window.onresize = () => {
@@ -14,7 +16,6 @@
 	}
 
 	window.onbeforeprint = () => {
-		tabs.linearizeTabs();
 		progressBar.setLevelAndExperience();
 		darkMode.printInNormalMode();
 	}
@@ -22,5 +23,9 @@
 	window.onafterprint = () => {
 		tabs.displayTabs();
 		darkMode.applyDarkModeSettings();
+	}
+
+	window.onwheel = (event) => {
+		tabs.scroll(event);
 	}
 })();

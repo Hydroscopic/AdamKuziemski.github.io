@@ -17,6 +17,10 @@ class TabComponent {
     this.swipePosition = new Point2d(0, 0);
     /** @private {number} */
     this.swipeThreshold = 50;
+    /** @private {number} */
+    this.scrollPosition = 0;
+    /** @private {boolean} */
+    this.isScrolling = false;
 
     /** @private {HTMLMainElement} */
     this.tabsContainer = document.getElementById('tab-container');
@@ -61,10 +65,35 @@ class TabComponent {
   };
 
   /**
-   * Sets display: block to all tabs to display them all at the same time.
+   * Allows for scrolling tabs without hovering over the tab area.
+   * 
+   * @param {WheelEvent} event containing scroll data
    */
-  linearizeTabs() {
-    this.content.forEach(tab => tab.style.display = 'block');
+  scroll(event) {
+    if (event.target.tagName !== 'HTML') {
+      this.setScrollPosition(this.tabsContainer.scrollTop);
+      return;
+    }
+
+    const { deltaY, deltaMode } = event;
+
+    this.setScrollPosition(deltaMode === WheelEvent.DOM_DELTA_LINE ? deltaY * 36 : // get line height from tabs
+      deltaMode === WheelEvent.DOM_DELTA_PIXEL ? deltaY :
+        deltaY * this.tabsContainer.clientHeight);
+
+    if (this.isScrolling) {
+      return;
+    }
+
+    this.isScrolling = true;
+
+    requestAnimationFrame(() => {
+      this.tabsContainer.scrollTo({
+        top: this.scrollPosition,
+        behavior: 'smooth'
+      });
+      this.isScrolling = false;
+    });
   }
 
   /**
@@ -341,5 +370,24 @@ class TabComponent {
    */
   doesNotHaveTab(index) {
     return index < 0 || index >= this.tabs.length;
+  }
+
+  /**
+   * @private
+   * Sets scroll position and caps it inside window bounds
+   * @param {number} newPostion of tab container scrollbar
+   */
+  setScrollPosition(newPosition) {
+    this.scrollPosition = this.scrollPosition + newPosition;
+
+    if (this.scrollPosition < 0) {
+      this.scrollPosition = 0;
+    }
+
+    const maximumScrollbarPosition = this.tabsContainer.scrollHeight - this.tabsContainer.clientHeight;
+
+    if (this.scrollPosition > maximumScrollbarPosition) {
+      this.scrollPosition = maximumScrollbarPosition;
+    }
   }
 }
